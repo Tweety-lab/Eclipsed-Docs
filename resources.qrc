@@ -9,5 +9,7 @@
         <file>resources/icons/bold.svg</file>
         <file>resources/icons/italic.svg</file>
         <file>resources/icons/add_new.svg</file>
+        <file>resources/icons/zoom_in.svg</file>
+        <file>resources/icons/zoom_out.svg</file>
     </qresource>
 </RCC>

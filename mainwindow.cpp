@@ -8,6 +8,8 @@
 #include <QTextStream>
 #include <QFile>
 #include <QTextBlock>
+#include <QDesktopServices>
+#include <QUrl>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -28,6 +30,30 @@ MainWindow::~MainWindow()
 
 
 QString currentFilePath; // Global variable, should see if theres a better way to handle file interaction
+
+// If player pressed F5 button, open help link
+void MainWindow::keyPressEvent(QKeyEvent *event)
+{
+    // Define help link
+    QUrl helpUrl("https://github.com/Tweety-lab/Eclipsed-Docs");
+    if (event->key() == Qt::Key_F5)
+    {
+        // Check if the URL is valid
+        if (helpUrl.isValid())
+        {
+            QDesktopServices::openUrl(helpUrl);
+        }
+        else
+        {
+            qDebug() << "Invalid URL Help URL";
+        }
+    }
+    else
+    {
+        // Call the base class implementation for other key events
+        QMainWindow::keyPressEvent(event);
+    }
+}
 
 void MainWindow::on_actionNew_triggered()
 {

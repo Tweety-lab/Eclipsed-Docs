@@ -6,7 +6,7 @@
 DialogueSyntax::DialogueSyntax(QTextDocument *document)
     : QSyntaxHighlighter(document)
 {
-    // Initialize any member variables or setup specific to your highlighting rules
+    // Initialize any member variables or setup specifics here
 }
 
 void DialogueSyntax::highlightBlock(const QString &text)

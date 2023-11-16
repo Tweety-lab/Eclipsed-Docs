@@ -43,9 +43,13 @@ private slots:
 
     void on_actionNew_triggered();
 
+    void keyPressEvent(QKeyEvent *event) override;
+
+
 private:
     Ui::MainWindow *ui;
     DialogueSyntax *syntaxHighlighter;
+
 };
 
 #endif // MAINWINDOW_H
