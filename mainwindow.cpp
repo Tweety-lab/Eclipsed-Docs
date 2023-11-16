@@ -306,3 +306,20 @@ void MainWindow::on_mainTextField_textChanged()
 
 
 
+
+void MainWindow::on_actionGithub_triggered()
+{
+    // Define help link
+    QUrl helpUrl("https://github.com/Tweety-lab/Eclipsed-Docs");
+
+    // Check if the URL is valid
+    if (helpUrl.isValid())
+    {
+        QDesktopServices::openUrl(helpUrl);
+    }
+    else
+    {
+        qDebug() << "Invalid URL Help URL";
+    }
+}
+

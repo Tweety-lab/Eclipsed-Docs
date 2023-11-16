@@ -46,6 +46,8 @@ private slots:
     void keyPressEvent(QKeyEvent *event) override;
 
 
+    void on_actionGithub_triggered();
+
 private:
     Ui::MainWindow *ui;
     DialogueSyntax *syntaxHighlighter;
