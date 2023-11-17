@@ -17,6 +17,7 @@ void EclipsedTextEdit::paintEvent(QPaintEvent *event)
     highlightCurrentLine();
 }
 
+// TODO: Make Line Highlighting work with different alignments
 
 void EclipsedTextEdit::highlightCurrentLine()
 {
