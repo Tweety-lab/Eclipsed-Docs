@@ -163,7 +163,7 @@ QToolButton {
           <string notr="true"/>
          </property>
          <property name="text">
-          <string>V1.01</string>
+          <string>V1.02</string>
          </property>
         </widget>
        </item>
