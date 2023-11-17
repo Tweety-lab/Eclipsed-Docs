@@ -48,6 +48,10 @@ private slots:
 
     void on_actionGithub_triggered();
 
+    void on_actionZoom_In_triggered();
+
+    void on_actionZoom_Out_triggered();
+
 private:
     Ui::MainWindow *ui;
     DialogueSyntax *syntaxHighlighter;

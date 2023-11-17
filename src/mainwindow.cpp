@@ -27,9 +27,82 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+// GLOBAL VARIABLES:
+QString currentFilePath;
 
 
-QString currentFilePath; // Global variable, should see if theres a better way to handle file interaction
+// STANDALONE FUNCTIONS:
+
+// Simulate a Zoom effect by scaling the font by an inputted value
+void adjustZoom(MainWindow& mainWindow, int val)
+{
+    QTextEdit* mainTextField = mainWindow.getUi()->mainTextField;
+
+    // Increase the font size of all text by val
+    QTextCursor cursor = mainTextField->textCursor();
+    cursor.select(QTextCursor::Document);
+    QTextCharFormat format;
+    format.setFontPointSize(cursor.charFormat().font().pointSize() + val);
+    cursor.mergeCharFormat(format);
+}
+
+
+// Save to pre-existing file
+void saveDefault(MainWindow& mainWindow)
+{
+    QTextEdit* mainTextField = mainWindow.getUi()->mainTextField; // Use getUi() to access ui
+    QFile file(currentFilePath);
+
+    // Open the file in write-only mode
+    if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        QTextStream out(&file);
+        // Write all text to file
+        out << mainTextField->toHtml();
+
+        // Close the file
+        file.close();
+    } else {
+        qDebug() << "Error opening file:" << file.errorString();
+    }
+    mainWindow.setWindowTitle(mainWindow.windowTitle().remove(QChar('*'))); // Remove all '*' symbols
+}
+
+// Save to new file
+void saveAs(MainWindow& mainWindow) {
+    // Show user file selection dialogue for saving a new file
+    QString filePath = QFileDialog::getSaveFileName(nullptr, "Save File", "", "Eclipsed Files (*.ecd);;Text Files (*.txt)");
+    currentFilePath = filePath;
+
+
+    // Validate if the user selected a save location, return if not
+    if (filePath.isEmpty()) {
+        return;
+    }
+
+    QTextEdit* mainTextField = mainWindow.getUi()->mainTextField; // Use getUi() to access ui
+    QFile file(filePath);
+    QFileInfo fileInfo(filePath);
+
+    // Open the file in write-only mode
+    if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        QTextStream out(&file);
+
+        // Write all text to file
+        out << mainTextField->toHtml();
+
+        // Close the file
+        file.close();
+    } else {
+        qDebug() << "Error opening file:" << file.errorString();
+    }
+
+    // Set WindowTitle to include name of newly saved file
+    mainWindow.setWindowTitle("Eclipsed Docs");
+    mainWindow.setWindowTitle(mainWindow.windowTitle() + " - " + fileInfo.baseName() + "." + fileInfo.suffix());
+
+    mainWindow.setWindowTitle(mainWindow.windowTitle().remove(QChar('*'))); // Remove all '*' symbols
+}
+
 
 // If player pressed F5 button, open help link
 void MainWindow::keyPressEvent(QKeyEvent *event)
@@ -122,6 +195,7 @@ void MainWindow::on_actionOpen_triggered()
     } else {
         qDebug() << "Error opening file:" << file.errorString();
     }
+
 }
 
 // Make UI accessable through non MainWindow derivative functions
@@ -129,64 +203,6 @@ Ui::MainWindow* MainWindow::getUi() const {
     return ui;
 }
 
-// Define functions for later use on actionSave trigger
-
-// Save to pre-existing file
-void saveDefault(MainWindow& mainWindow)
-{
-    QTextEdit* mainTextField = mainWindow.getUi()->mainTextField; // Use getUi() to access ui
-    QFile file(currentFilePath);
-
-    // Open the file in write-only mode
-    if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-        QTextStream out(&file);
-        // Write all text to file
-        out << mainTextField->toHtml();
-
-        // Close the file
-        file.close();
-    } else {
-        qDebug() << "Error opening file:" << file.errorString();
-    }
-    mainWindow.setWindowTitle(mainWindow.windowTitle().remove(QChar('*'))); // Remove all '*' symbols
-}
-
-
-// Save to new file
-void saveAs(MainWindow& mainWindow) {
-    // Show user file selection dialogue for saving a new file
-    QString filePath = QFileDialog::getSaveFileName(nullptr, "Save File", "", "Eclipsed Files (*.ecd);;Text Files (*.txt)");
-    currentFilePath = filePath;
-
-
-    // Validate if the user selected a save location, return if not
-    if (filePath.isEmpty()) {
-        return;
-    }
-
-    QTextEdit* mainTextField = mainWindow.getUi()->mainTextField; // Use getUi() to access ui
-    QFile file(filePath);
-    QFileInfo fileInfo(filePath);
-
-    // Open the file in write-only mode
-    if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-        QTextStream out(&file);
-
-        // Write all text to file
-        out << mainTextField->toHtml();
-
-        // Close the file
-        file.close();
-    } else {
-        qDebug() << "Error opening file:" << file.errorString();
-    }
-
-    // Set WindowTitle to include name of newly saved file
-    mainWindow.setWindowTitle("Eclipsed Docs");
-    mainWindow.setWindowTitle(mainWindow.windowTitle() + " - " + fileInfo.baseName() + "." + fileInfo.suffix());
-
-    mainWindow.setWindowTitle(mainWindow.windowTitle().remove(QChar('*'))); // Remove all '*' symbols
-}
 
 void MainWindow::on_actionSave_triggered() {
     // Checks if user is saving to pre-existing file, if not run Save As
@@ -302,6 +318,7 @@ void MainWindow::on_mainTextField_textChanged()
     {
         MainWindow::setWindowTitle(MainWindow::windowTitle() + "*");
     }
+
 }
 
 
@@ -321,5 +338,19 @@ void MainWindow::on_actionGithub_triggered()
     {
         qDebug() << "Invalid URL Help URL";
     }
+}
+
+// Handle zooming in/out
+
+// Zoom In
+void MainWindow::on_actionZoom_In_triggered()
+{
+    adjustZoom(*this, 1);
+}
+
+// Zoom Out
+void MainWindow::on_actionZoom_Out_triggered()
+{
+    adjustZoom(*this, -1);
 }
 
