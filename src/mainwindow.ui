@@ -88,12 +88,12 @@ QMenu::item:selected {
      <widget class="QTextEdit" name="mainTextField">
       <property name="styleSheet">
        <string notr="true">QScrollBar:vertical {
-    color: rgb(20, 20, 20);
+    color: rgb(25, 25, 25);
     width: 10px;
 }
 
 QScrollBar::handle:vertical {
-    background: rgb(25, 25, 25);
+    background: rgb(50, 50 ,50);
     min-height: 20px;
 }
 
@@ -106,7 +106,7 @@ QScrollBar::sub-line:vertical {
 
 QScrollBar::add-page:vertical,
 QScrollBar::sub-page:vertical {
-    background: rgb(50, 50, 50);
+    background: rgb(20, 20, 20);
 }
 </string>
       </property>
