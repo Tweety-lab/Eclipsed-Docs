@@ -85,7 +85,7 @@ QMenu::item:selected {
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
     <item row="1" column="0">
-     <widget class="QTextEdit" name="mainTextField">
+     <widget class="EclipsedTextEdit" name="mainTextField">
       <property name="styleSheet">
        <string notr="true">QScrollBar:vertical {
     color: rgb(25, 25, 25);
@@ -453,6 +453,13 @@ QToolButton {
    </property>
   </action>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>EclipsedTextEdit</class>
+   <extends>QTextEdit</extends>
+   <header>eclipsedtextedit.h</header>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="resources.qrc"/>
  </resources>
