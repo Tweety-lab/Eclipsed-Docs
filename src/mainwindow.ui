@@ -145,6 +145,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
       <property name="styleSheet">
        <string notr="true">QWidget {
     background-color: rgb(20, 20, 20);
+	border-radius: 20px;
 }
 
 QLabel {
