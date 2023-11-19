@@ -28,7 +28,10 @@ MainWindow::~MainWindow()
 }
 
 // GLOBAL VARIABLES:
+
 QString currentFilePath;
+bool isItalic = false; // Define the italic variable for toggling italic text
+bool isBold = false; // Define the bold variable for toggling bold text
 
 
 // STANDALONE FUNCTIONS:
@@ -114,6 +117,8 @@ void saveAs(MainWindow& mainWindow) {
 }
 
 
+// FILE ACTIONS:
+
 void MainWindow::on_actionNew_triggered()
 {
     ui->mainTextField->setText(""); // TODO: Check if theres a dedicated clear text function
@@ -184,12 +189,6 @@ void MainWindow::on_actionOpen_triggered()
 
 }
 
-// Make UI accessable through non MainWindow derivative functions
-Ui::MainWindow* MainWindow::getUi() const {
-    return ui;
-}
-
-
 void MainWindow::on_actionSave_triggered() {
     // Checks if user is saving to pre-existing file, if not run Save As
     if(currentFilePath.isEmpty())
@@ -206,6 +205,9 @@ void MainWindow::on_actionSave_As_triggered()
 {
     saveAs(*this);
 }
+
+
+// TEXT ACTIONS:
 
 /* Alignment actions, this used to be written from scratch but was later changed to use setAlignment().
 Sometimes I question my choice of hobby. */
@@ -230,7 +232,6 @@ void MainWindow::on_actionAlign_Middle_triggered()
     mainTextField->setAlignment(Qt::AlignCenter);
 }
 
-
 // Align Right
 void MainWindow::on_actionAlign_Right_triggered()
 {
@@ -241,9 +242,6 @@ void MainWindow::on_actionAlign_Right_triggered()
     mainTextField->setAlignment(Qt::AlignRight);
 }
 
-
-bool isItalic = false; // Define the italic variable for toggling italic text
-bool isBold = false; // Define the bold variable for toggling bold text
 
 // On Bold toolbar button clicked
 void MainWindow::on_actionBold_triggered()
@@ -286,6 +284,12 @@ void MainWindow::on_actionItalic_triggered()
     mainTextField->setCurrentCharFormat(format);
 }
 
+
+
+
+// MISC ACTIONS:
+
+
 // On user changed text (right now used for displaying if file has or has not been saved)
 
 /* The entire save-display system is incredibly messy and should probably be
@@ -293,7 +297,7 @@ void MainWindow::on_actionItalic_triggered()
 
    PS: This method of checking for a change in text means it will add
    a star to the WindowTitle when a new file is opened even if nothing
-   is changed. Not an issue right now but may be at a later date.*/
+   is changed. Not an issue right now but important to note.*/
 
 void MainWindow::on_mainTextField_textChanged()
 {
@@ -307,8 +311,10 @@ void MainWindow::on_mainTextField_textChanged()
 
 }
 
-
-
+// Make UI accessable through non MainWindow derivative functions
+Ui::MainWindow* MainWindow::getUi() const {
+    return ui;
+}
 
 void MainWindow::on_actionGithub_triggered()
 {
@@ -325,6 +331,7 @@ void MainWindow::on_actionGithub_triggered()
         qDebug() << "Invalid URL Help URL";
     }
 }
+
 
 // Handle zooming in/out
 
