@@ -159,7 +159,7 @@ color: rgb(200, 200, 200);
           <string notr="true"/>
          </property>
          <property name="text">
-          <string>V1.03</string>
+          <string>V1.04</string>
          </property>
         </widget>
        </item>
