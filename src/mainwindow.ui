@@ -19,9 +19,9 @@
 }
 
 QTextEdit{
-    background: rgb(40, 40, 40); /*background color */
-    color: #636363; /* Foreground color*/
- 	border: 1px solid black; /*Border color*/
+    background: rgb(40, 40, 40);
+    color: #636363;
+ 	border: 1px solid black;
 	border-radius: 5px;
 	font-style: italic;
 }
@@ -31,8 +31,14 @@ QToolBar {
 	border: 0;
 }
 
+QToolBar::handle {
+    color: rgb(25, 25, 250);
+}
+
+
+
 QMenuBar::item {
-    color: rgb(200, 200, 200); /* Text color of the menu items */
+    color: rgb(200, 200, 200);
 }
 
 QToolBar QToolButton {
@@ -50,7 +56,7 @@ QToolBar QToolButton {
 }
 
 QToolButton:pressed {
-    background-color: rgb(25, 25, 25); /* Background color when pressed */
+    background-color: rgb(25, 25, 25);
 }
 
 QMenuBar{
@@ -60,16 +66,16 @@ QMenuBar{
 
 
 QMenuBar::item:selected {
-    background-color: rgb(200, 200, 200); /* Background color of the selected menu item */
-    color: black; /* Text color of the selected menu item */
+    background-color: rgb(200, 200, 200);
+    color: black; 
 }
 
 QMenu::item {
-    color: white; /* Text color of submenu items */
+    color: white;
 }
 
 QMenu::item:selected {
-    color: black; /* Text color of submenu items */
+    color: black;
 	background-color: rgb(200, 200, 200);
 }
 
@@ -242,7 +248,7 @@ color: rgb(200, 200, 200);
     <string>toolBar</string>
    </property>
    <property name="movable">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <property name="iconSize">
     <size>
