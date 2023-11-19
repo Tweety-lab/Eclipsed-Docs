@@ -426,6 +426,9 @@ color: rgb(200, 200, 200);
    <property name="text">
     <string>Github</string>
    </property>
+   <property name="shortcut">
+    <string>F5</string>
+   </property>
   </action>
   <action name="actionZoom_In">
    <property name="icon">

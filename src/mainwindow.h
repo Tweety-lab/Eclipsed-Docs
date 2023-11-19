@@ -43,9 +43,6 @@ private slots:
 
     void on_actionNew_triggered();
 
-    void keyPressEvent(QKeyEvent *event) override;
-
-
     void on_actionGithub_triggered();
 
     void on_actionZoom_In_triggered();

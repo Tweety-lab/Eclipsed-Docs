@@ -114,32 +114,6 @@ void saveAs(MainWindow& mainWindow) {
 }
 
 
-
-
-// If player pressed F5 button, open help link
-void MainWindow::keyPressEvent(QKeyEvent *event)
-{
-    // Define help link
-    QUrl helpUrl("https://github.com/Tweety-lab/Eclipsed-Docs");
-    if (event->key() == Qt::Key_F5)
-    {
-        // Check if the URL is valid
-        if (helpUrl.isValid())
-        {
-            QDesktopServices::openUrl(helpUrl);
-        }
-        else
-        {
-            qDebug() << "Invalid URL Help URL";
-        }
-    }
-    else
-    {
-        // Call the base class implementation for other key events
-        QMainWindow::keyPressEvent(event);
-    }
-}
-
 void MainWindow::on_actionNew_triggered()
 {
     ui->mainTextField->setText(""); // TODO: Check if theres a dedicated clear text function
