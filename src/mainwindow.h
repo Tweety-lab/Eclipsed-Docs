@@ -52,6 +52,10 @@ private slots:
 
     void on_actionZoom_Out_triggered();
 
+    void on_actionMark_Player_Dialogue_triggered();
+
+    void on_actionMark_NPC_Dialogue_triggered();
+
 private:
     Ui::MainWindow *ui;
     DialogueSyntax *syntaxHighlighter;

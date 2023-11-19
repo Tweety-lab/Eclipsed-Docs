@@ -145,17 +145,12 @@ li.checked::marker { content: &quot;\2612&quot;; }
       <property name="styleSheet">
        <string notr="true">QWidget {
     background-color: rgb(20, 20, 20);
-	border-radius: 20px;
 }
 
 QLabel {
 color: rgb(200, 200, 200);
 }
-
-QToolButton {
-    background-color: rgb(14, 14, 14);
-    border: none;
-}</string>
+</string>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
@@ -222,6 +217,9 @@ QToolButton {
     <addaction name="actionDelete"/>
     <addaction name="separator"/>
     <addaction name="actionSelect_All"/>
+    <addaction name="separator"/>
+    <addaction name="actionMark_Player_Dialogue"/>
+    <addaction name="actionMark_NPC_Dialogue"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -451,6 +449,22 @@ QToolButton {
    </property>
    <property name="shortcut">
     <string>Ctrl+-</string>
+   </property>
+  </action>
+  <action name="actionMark_Player_Dialogue">
+   <property name="text">
+    <string>Mark As Player Dialogue</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+P</string>
+   </property>
+  </action>
+  <action name="actionMark_NPC_Dialogue">
+   <property name="text">
+    <string>Mark As NPC Dialogue</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
    </property>
   </action>
  </widget>

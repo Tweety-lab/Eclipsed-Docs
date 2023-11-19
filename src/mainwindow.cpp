@@ -33,6 +33,16 @@ QString currentFilePath;
 
 // STANDALONE FUNCTIONS:
 
+// Insert a string at the start of the current line
+void insertAtLineStart(MainWindow& mainWindow, QString val)
+{
+    QTextEdit* mainTextField = mainWindow.getUi()->mainTextField;
+    QTextCursor textCursor = mainTextField->textCursor();
+
+    textCursor.movePosition(QTextCursor::StartOfLine);
+    textCursor.insertText(val);
+}
+
 // Simulate a Zoom effect by scaling the font by an inputted value
 void adjustZoom(MainWindow& mainWindow, int val)
 {
@@ -102,6 +112,8 @@ void saveAs(MainWindow& mainWindow) {
 
     mainWindow.setWindowTitle(mainWindow.windowTitle().remove(QChar('*'))); // Remove all '*' symbols
 }
+
+
 
 
 // If player pressed F5 button, open help link
@@ -352,5 +364,17 @@ void MainWindow::on_actionZoom_In_triggered()
 void MainWindow::on_actionZoom_Out_triggered()
 {
     adjustZoom(*this, -1);
+}
+
+// Automatically insert '&P' at start of current line
+void MainWindow::on_actionMark_Player_Dialogue_triggered()
+{
+    insertAtLineStart(*this, "&P");
+}
+
+// Automatically insert '&N' at start of current line
+void MainWindow::on_actionMark_NPC_Dialogue_triggered()
+{
+    insertAtLineStart(*this, "&N");
 }
 
