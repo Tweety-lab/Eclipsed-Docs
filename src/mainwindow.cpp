@@ -23,7 +23,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
-    delete syntaxHighlighter;  // Don't forget to delete the allocated memory!
+    delete syntaxHighlighter;
     delete ui;
 }
 
@@ -350,12 +350,12 @@ void MainWindow::on_actionZoom_Out_triggered()
 // Automatically insert '&P' at start of current line
 void MainWindow::on_actionMark_Player_Dialogue_triggered()
 {
-    insertAtLineStart(*this, "&P");
+    insertAtLineStart(*this, "&P ");
 }
 
 // Automatically insert '&N' at start of current line
 void MainWindow::on_actionMark_NPC_Dialogue_triggered()
 {
-    insertAtLineStart(*this, "&N");
+    insertAtLineStart(*this, "&N ");
 }
 
