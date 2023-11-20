@@ -310,11 +310,7 @@ void MainWindow::on_actionItalic_triggered()
 // On user changed text (right now used for displaying if file has or has not been saved)
 
 /* The entire save-display system is incredibly messy and should probably be
-   Cleaned up or rewritten completely at a later date but it works for now.
-
-   PS: This method of checking for a change in text means it will add
-   a star to the WindowTitle when a new file is opened even if nothing
-   is changed. Not an issue right now but important to note.*/
+   Cleaned up or rewritten completely at a later date but it works for now.*/
 
 void MainWindow::on_mainTextField_textChanged()
 {
