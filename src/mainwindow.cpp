@@ -42,8 +42,25 @@ void insertAtLineStart(MainWindow& mainWindow, QString val)
     QTextEdit* mainTextField = mainWindow.getUi()->mainTextField;
     QTextCursor textCursor = mainTextField->textCursor();
 
-    textCursor.movePosition(QTextCursor::StartOfLine);
-    textCursor.insertText(val);
+    QString currentLine = textCursor.block().text(); // Define the current line the user's cursor is on
+
+    int count = currentLine.count("	");
+
+    // If there is at least 1 indent on current line, place val at end of indents otherwise place val at start of line
+    if (count >= 1) {
+        int index = currentLine.indexOf("	"); // Get position of indent
+
+        // Set textCursor to end of indent and insert val
+        textCursor.setPosition(textCursor.block().position() + index);
+        textCursor.movePosition(QTextCursor::Right, QTextCursor::MoveAnchor, count);
+        textCursor.insertText(val);
+
+    } else {
+        // Move textCursor to start of line and insert val
+        textCursor.movePosition(QTextCursor::StartOfLine);
+        textCursor.insertText(val);
+    }
+
 }
 
 // Simulate a Zoom effect by scaling the font by an inputted value
